@@ -1,0 +1,32 @@
+# Ignorar archivos de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# Archivos de entorno
+.env
+
+# Directorios de persistencia de ChromaDB
+chroma_db/
+chroma_db_advanced/
+chroma_db_api/
+
+# Archivos temporales de subida
+temp_uploads/
+
+# Archivos de IDE
+.vscode/
+.idea/
+
+# Logs y otros archivos generados
+*.log
+*.sqlite3
