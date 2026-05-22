@@ -25,12 +25,14 @@ La estructura profesional del proyecto modular de FastAPI está organizada bajo 
 ```
 rag-api/
 ├── .env                           # Credenciales y variables de configuración (OPENAI_API_KEY)
+├── .env.example                   # Plantilla para las variables de entorno
 ├── requirements.txt               # Declaración de dependencias del sistema
 ├── config.py                      # Clase de configuración centralizada con Pydantic-Settings
 ├── dependencies.py                # Proveedores y dependencias de inyección de FastAPI (get_agent_service)
 ├── main.py                        # Punto de entrada de FastAPI y registro de enrutadores
 ├── db_initializer.py              # Script para inicializar y poblar ChromaDB con embeddings vectoriales
 ├── demo_function_calling.py       # Demostración independiente en consola de la Fase 1
+├── client_interactive.py          # Cliente interactivo por consola para pruebas rápidas
 ├── run_tests.py                   # Suite de pruebas automatizadas completa
 ├── chroma_db_advanced/            # Carpeta persistente con la base de datos vectorial ChromaDB
 ├── models/
@@ -38,8 +40,9 @@ rag-api/
 │   └── agent.py                   # Modelos de datos Pydantic (AgentRequest, ToolStep, AgentResponse)
 ├── routers/
 │   ├── __init__.py
-│   ├── health.py                  # Endpoint GET / para diagnóstico de salud del servicio
-│   └── agent.py                   # Endpoint POST /agent para interactuar síncronamente con el agente
+│   ├── health.py                  # Endpoint GET /health para diagnóstico de salud del servicio
+│   ├── agent.py                   # Endpoint POST /agent para interactuar síncronamente con el agente
+│   └── chat.py                    # Interfaz web interactiva (HTML/JS) accesible en la raíz (/)
 ├── services/
 │   ├── __init__.py
 │   └── agent_service.py           # Bucle principal de razonamiento e integración del agente (AgentService)
@@ -50,6 +53,20 @@ rag-api/
     ├── orders_tool.py             # Consulta y listado de pedidos simulados en memoria
     └── hours_tool.py              # Bono: Consulta de horarios y contacto por sucursal
 ```
+
+---
+
+## Interfaz Web de Chat
+
+El proyecto incluye una interfaz web moderna y minimalista construida con HTML y Vanilla JavaScript. Puede acceder a ella navegando a la raíz del servidor:
+
+- **URL**: `http://localhost:8000/`
+
+Esta interfaz permite:
+- Visualizar el historial de conversación.
+- Ver el **razonamiento paso a paso** del agente (herramientas utilizadas, argumentos y resultados).
+- Sugerencias de preguntas rápidas.
+- Indicador de estado del servidor en tiempo real.
 
 ---
 

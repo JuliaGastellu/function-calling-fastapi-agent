@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 from pathlib import Path
 from openai import OpenAI
 
@@ -57,7 +58,11 @@ def main():
         
         for call in mensaje_respuesta.tool_calls:
             nombre_tool = call.function.name
-            args = eval(call.function.arguments)  # Convertir string de argumentos a dict
+            try:
+                args = json.loads(call.function.arguments)
+            except Exception as e:
+                print(f"  ERROR: Error decodificando JSON: {e}")
+                args = {}
             
             print(f"- Herramienta: {nombre_tool}")
             print(f"  Argumentos: {args}")
